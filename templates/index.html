@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FieldNote AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <section id="welcome" class="screen active">
+
+            <div class="eyebrow">LOCAL AI · OUTDOOR JOURNAL</div>
+
+            <h1>
+                Your next<br>
+                adventure is<br>
+                <span>outside.</span>
+            </h1>
+
+            <p class="intro">
+                FieldNote AI uses local Gemma to create tiny outdoor
+                missions designed around your time, energy and surroundings.
+            </p>
+
+            <button class="primary-btn" onclick="showScreen('builder')">
+                Start an adventure
+                <span>→</span>
+            </button>
+
+            <div class="privacy">
+                🔒 Runs locally with Gemma · No paid AI API
+            </div>
+
+        </section>
+
+
+        <section id="builder" class="screen">
+
+            <button class="back-btn" onclick="showScreen('welcome')">
+                ← Back
+            </button>
+
+            <div class="eyebrow">01 · YOUR ADVENTURE</div>
+
+            <h2>
+                Make it fit<br>
+                <span>your day.</span>
+            </h2>
+
+            <div class="question">
+                <label>How much time do you have?</label>
+
+                <div class="choices" id="timeChoices">
+                    <button data-value="10 minutes">10 min</button>
+                    <button class="selected" data-value="20 minutes">20 min</button>
+                    <button data-value="30 minutes">30 min</button>
+                    <button data-value="60 minutes">60 min</button>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>What's your energy like?</label>
+
+                <div class="choices" id="energyChoices">
+                    <button data-value="low">Low</button>
+                    <button class="selected" data-value="medium">Medium</button>
+                    <button data-value="high">High</button>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>Where are you going?</label>
+
+                <div class="choices" id="settingChoices">
+                    <button class="selected" data-value="neighborhood">Neighborhood</button>
+                    <button data-value="park">Park</button>
+                    <button data-value="garden">Garden</button>
+                    <button data-value="terrace">Terrace</button>
+                    <button data-value="anywhere">Anywhere</button>
+                </div>
+            </div>
+
+            <button class="primary-btn" onclick="createMission()">
+                Create my mission
+                <span>→</span>
+            </button>
+
+        </section>
+
+
+        <section id="loading" class="screen centered">
+
+            <div class="loader">✦</div>
+
+            <div class="eyebrow">GEMMA IS THINKING</div>
+
+            <h2>
+                Designing something<br>
+                <span>worth going outside for.</span>
+            </h2>
+
+            <p>
+                Your mission is being created locally.
+            </p>
+
+        </section>
+
+
+        <section id="mission" class="screen">
+
+            <div class="mission-top">
+                <div class="eyebrow">YOUR FIELD MISSION</div>
+                <div class="local-badge">● LOCAL GEMMA</div>
+            </div>
+
+            <h2 id="missionTitle">Your mission</h2>
+
+            <p id="missionText" class="mission-text"></p>
+
+            <div class="observations">
+
+                <div class="observation">
+                    <span>01</span>
+                    <p id="observation1"></p>
+                </div>
+
+                <div class="observation">
+                    <span>02</span>
+                    <p id="observation2"></p>
+                </div>
+
+                <div class="observation">
+                    <span>03</span>
+                    <p id="observation3"></p>
+                </div>
+
+            </div>
+
+            <div class="closing" id="missionClosing"></div>
+
+            <button class="primary-btn" onclick="startOutside()">
+                🌿 I'm heading out
+            </button>
+
+        </section>
+
+
+        <section id="outside" class="screen centered">
+
+            <div class="outside-icon">🌿</div>
+
+            <div class="eyebrow">SCREEN EXIT MODE</div>
+
+            <h2>
+                Put the phone<br>
+                <span>away.</span>
+            </h2>
+
+            <p>
+                Your mission is ready.<br>
+                The rest happens outside.
+            </p>
+
+            <button class="secondary-btn" onclick="showScreen('reflection')">
+                I'm back
+            </button>
+
+        </section>
+
+
+        <section id="reflection" class="screen">
+
+            <div class="eyebrow">02 · YOUR FIELD NOTE</div>
+
+            <h2>
+                What did<br>
+                you <span>notice?</span>
+            </h2>
+
+            <textarea
+                id="reflectionText"
+                placeholder="Write one thing you noticed, felt, heard or saw..."
+            ></textarea>
+
+            <div class="photo-box">
+                <span>📷</span>
+                <strong>Add a photo</strong>
+                <small>Optional · stays on your device</small>
+
+                <input type="file" accept="image/*">
+            </div>
+
+            <button class="primary-btn" onclick="createFieldNote()">
+                Create my field note
+                <span>→</span>
+            </button>
+
+        </section>
+
+
+        <section id="result" class="screen">
+
+            <div class="eyebrow">FIELD NOTE · #001</div>
+
+            <article class="field-note">
+
+                <div class="note-header">
+                    <span>FIELDNOTE AI</span>
+                    <span id="noteDate"></span>
+                </div>
+
+                <h2 id="noteTitle"></h2>
+
+                <p id="noteText"></p>
+
+                <div class="note-closing" id="noteClosing"></div>
+
+            </article>
+
+            <button class="secondary-btn" onclick="resetAdventure()">
+    Create another adventure
+</button>
+
+        </section>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+
+</body>
+</html>
