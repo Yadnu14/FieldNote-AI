@@ -128,33 +128,13 @@ Personalized Field Note
 
 The application has two main AI interactions:
 
-1. **Mission Generation**  
-   Gemma creates a small outdoor activity based on the user's time, energy, and environment.
+### Mission Generation
 
-2. **Field Note Generation**  
-   Gemma turns the user's actual reflection into a concise field note while staying grounded in the details the user provided.
+Gemma creates a small outdoor activity based on the user's time, energy, and environment.
 
----
+### Field Note Generation
 
-## 📸 Screenshots
-
-### Landing Page
-
-![FieldNote AI landing page](screenshots/landing.png)
-
-### Generated Mission
-
-![Generated outdoor mission](screenshots/mission.png)
-
-### Screen Exit Mode
-
-![FieldNote AI screen exit mode](screenshots/outside-mode.png)
-
-### Final Field Note
-
-![Generated field note](screenshots/field-note.png)
-
-> **Note:** Make sure the screenshot filenames above exactly match the files inside the `screenshots/` folder.
+Gemma turns the user's actual reflection into a concise field note while staying grounded in the details the user provided.
 
 ---
 
@@ -281,15 +261,9 @@ FieldNote-AI/
 ├── templates/
 │   └── index.html
 │
-├── static/
-│   ├── app.js
-│   └── style.css
-│
-└── screenshots/
-    ├── landing.png
-    ├── mission.png
-    ├── outside-mode.png
-    └── field-note.png
+└── static/
+    ├── app.js
+    └── style.css
 ```
 
 ---
